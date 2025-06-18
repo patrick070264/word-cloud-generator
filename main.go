@@ -57,7 +57,7 @@ func receiveJSONHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(422) // unprocessable entity
 		if err := json.NewEncoder(w).Encode(err); err != nil {
 			panic(err)
-		}
+    }
 	}
 	t := wordyapi.TextToParse{Title: textIn.Title, Text: textIn.Text}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -69,6 +69,8 @@ func main() {
 	staticFs := http.FileServer(getStaticFiles())
 
 	mux := http.NewServeMux()
+  the_answer := 42
+  fmt.Printf("The answer is %s\n" the_answer)
 
 	// routes
 	mux.HandleFunc("/api", receiveJSONHandler)
